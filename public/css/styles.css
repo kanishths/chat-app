@@ -17,9 +17,9 @@ input {
 body {
   line-height: 1.4;
   color: #333333;
+  background-color: #138685;
   font-family: Helvetica, Arial, sans-serif;
   background-image: url(../img/bg.jpg);
-
   background-size: cover;
 }
 
@@ -63,6 +63,9 @@ button:disabled {
 
 .centered-form {
   background: #333744;
+
+  background-color: #0d7377;
+  background-image: linear-gradient(to right bottom, #1eada1, #0d7377);
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -75,10 +78,18 @@ button:disabled {
   background: #f7f7fa;
   padding: 24px;
   width: 250px;
+  border-radius: 20px;
 }
 
 .centered-form button {
   width: 100%;
+  transform: translateY(-5px);
+  transition: all 0.2s;
+  box-shadow: 0px 10px 12px #1d1f26;
+}
+
+.centered-form button:active {
+  transform: translateY(0);
 }
 
 .centered-form input {
@@ -111,6 +122,7 @@ button:disabled {
 }
 
 .chat__messages {
+  background-size: cover;
   flex-grow: 1;
   padding: 24px 24px 0 24px;
   overflow-y: scroll;
@@ -120,18 +132,18 @@ button:disabled {
 
 .message {
   margin-bottom: 16px;
-  /* background-color: #0d7377; */
-  background-image: linear-gradient(to bottom right, #dcc49b, #0d7377);
+  background-image: linear-gradient(to bottom right, #9bd4dc, #0d7377);
   padding: 15px 18px;
   border-radius: 10px;
   width: fit-content;
   color: #000000;
+  max-width: fit-content;
 }
 
 .message__name {
   font-weight: 600;
   font-size: 14px;
-  text-transform: capitalize;
+  text-transform: uppercase;
   margin-right: 8px;
 }
 
@@ -160,11 +172,13 @@ button:disabled {
 }
 
 .compose input {
-  border: 1px solid #eeeeee;
+  border: 1px solid #ffffff;
   width: 100%;
+  min-width: 100px;
   padding: 12px;
   margin: 0 16px 0 0;
   flex-grow: 1;
+  border-radius: 10px;
 }
 
 .compose button {
