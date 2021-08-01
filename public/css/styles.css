@@ -17,7 +17,6 @@ input {
 body {
   line-height: 1.4;
   color: #333333;
-  background-color: #138685;
   font-family: Helvetica, Arial, sans-serif;
   background-image: url(../img/bg.jpg);
   background-size: cover;
@@ -104,11 +103,26 @@ button:disabled {
 }
 
 .chat__sidebar {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   color: white;
   background-image: linear-gradient(to bottom right, #1eada1, #0d7377);
-  width: 225px;
+  min-width: 225px;
+  max-width: 225px;
   overflow-y: scroll;
+}
+
+.copyright {
+  color: #212121;
+  margin-top: auto;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.copyright a {
+  color: #fff;
 }
 
 /* Chat styles */
@@ -118,11 +132,9 @@ button:disabled {
   display: flex;
   flex-direction: column;
   max-height: 100vh;
-  width: 70%;
 }
 
 .chat__messages {
-  background-size: cover;
   flex-grow: 1;
   padding: 24px 24px 0 24px;
   overflow-y: scroll;
@@ -137,7 +149,6 @@ button:disabled {
   border-radius: 10px;
   width: fit-content;
   color: #000000;
-  max-width: fit-content;
 }
 
 .message__name {
@@ -152,8 +163,9 @@ button:disabled {
   font-size: 14px;
 }
 
-.message a {
-  color: #007488;
+.location__text {
+  text-decoration: underline;
+  color: #ffffff;
 }
 
 /* Message Composition Styles */
@@ -191,24 +203,35 @@ button:disabled {
   font-weight: 400;
   font-size: 22px;
   background: #2c2f3a;
+  color: #91ddd7;
   padding: 24px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .list-title {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 18px;
   margin-bottom: 4px;
   padding: 12px 24px 0 24px;
+  text-transform: uppercase;
+  color: #212121;
 }
 
 .users {
   list-style-type: none;
   font-weight: 300;
   padding: 12px 24px 0 24px;
+  text-transform: uppercase;
+}
+
+.users__list {
+  margin-bottom: 10px;
+  width: fit-content;
 }
 
 ::selection {
-  background-color: #91ddd7;
-  color: black;
+  background-color: black;
+  color: #91ddd7;
   padding: 3px 8px;
 }

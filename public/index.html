@@ -2,14 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Texter</title>
-    <link
-      rel="shortcut icon"
-      href="https://img.icons8.com/color/48/000000/chat--v1.png"
-      type="image/x-icon"
-    />
+
+    <title>Texter &dash; Instant Chat</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
@@ -21,11 +16,18 @@
           <input
             type="text"
             name="username"
-            placeholder="Display Name"
+            placeholder="Enter Username You Want"
             required
+            autocomplete="off"
           />
           <label>Room Code</label>
-          <input type="text" name="room" placeholder="Room Code" required />
+          <input
+            autocomplete="off"
+            type="text"
+            name="room"
+            placeholder="Enter Room Code  To Join"
+            required
+          />
           <button>Join</button>
         </form>
       </div>

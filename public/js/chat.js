@@ -8,27 +8,54 @@ const messages = document.querySelector("#messages");
 
 const messageTemplate = document.querySelector("#message-template").innerHTML;
 const locationTemplate = document.querySelector("#location-template").innerHTML;
+const sidebarTemplate = document.querySelector("#sidebar-template").innerHTML;
 
 // Options
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
+const autoScroll = () => {
+  const newMessage = messages.lastElementChild;
+
+  const newMessageStyles = getComputedStyle(newMessage);
+  const newMessageMargin = parseInt(newMessageStyles.marginBottom);
+  const newMessageHeight = newMessage.offsetHeight + newMessageMargin;
+  const visibleHeight = messages.offsetHeight;
+  const containerHeight = messages.scrollHeight;
+  const scrollOffset = (messages.scrollTop + visibleHeight) * 2;
+
+  if (containerHeight - newMessageHeight < scrollOffset) {
+    messages.scrollTop = messages.scrollHeight;
+  }
+};
+
 socket.on("message", (message) => {
-  console.log(message);
   const html = Mustache.render(messageTemplate, {
+    username: message.username,
     message: message.text,
     createdAt: moment(message.createdAt).format("h:mma"),
   });
   messages.insertAdjacentHTML("beforeend", html);
+  autoScroll();
 });
 
 socket.on("locationMessage", (message) => {
   const html = Mustache.render(locationTemplate, {
+    username: message.username,
     location: message.url,
     createdAt: moment(message.createdAt).format("h:mma"),
   });
   messages.insertAdjacentHTML("beforeend", html);
+  autoScroll();
+});
+
+socket.on("roomData", ({ room, users }) => {
+  const html = Mustache.render(sidebarTemplate, {
+    room,
+    users,
+  });
+  document.querySelector("#sidebar").innerHTML = html;
 });
 
 messageForm.addEventListener("submit", (e) => {
@@ -45,7 +72,6 @@ messageForm.addEventListener("submit", (e) => {
     if (error) {
       return console.log(error);
     }
-    console.log("This message was Delivered!");
   });
 });
 
@@ -59,9 +85,11 @@ sendLocationButton.addEventListener("click", () => {
     const longitude = position.coords.longitude;
     socket.emit("sendLocation", { latitude, longitude }, () => {
       sendLocationButton.removeAttribute("disabled");
-      console.log("Location Shared!");
     });
   });
 });
 
-socket.emit("join", { username, room });
+socket.emit("join", { username, room }, (error) => {
+  alert(error);
+  location.href = "/";
+});
