@@ -7,9 +7,12 @@ const generateMessage = (username, text) => {
 };
 
 const generateLocation = (username, lat, lon) => {
+  // console.log(lat);
+  const lat1 = lat.toString().substring(0, 5);
+  const lon1 = lon.toString().substring(0, 5);
   return {
     username,
-    url: `https://google.com/maps?q=${lat},${lon}`,
+    url: `${lat1}, ${lon1}`,
     createdAt: new Date().getTime(),
   };
 };
