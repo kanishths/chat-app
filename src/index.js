@@ -30,12 +30,12 @@ io.on("connection", (socket) => {
 
     socket.join(user.room);
 
-    socket.emit("message", generateMessage("Admin ", "Welcome!"));
+    socket.emit("message", generateMessage("Admin ", "Welcome! 🥳"));
     socket.broadcast
       .to(user.room)
       .emit(
         "message",
-        generateMessage("Admin", `${user.username} has joined the chat!`)
+        generateMessage("Admin", `${user.username} has joined the chat! 🥳`)
       );
 
     io.to(user.room).emit("roomData", {
@@ -48,7 +48,7 @@ io.on("connection", (socket) => {
     const user = getUser(socket.id);
     const filter = new Filter();
     if (filter.isProfane(message)) {
-      return callback("profanity is not allowed");
+      return callback("Profanity is Not Allowed 😒");
     }
     io.to(user.room).emit("message", generateMessage(user.username, message));
     callback();
@@ -69,7 +69,7 @@ io.on("connection", (socket) => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        generateMessage("Admin", `${user.username} has left!`)
+        generateMessage("Admin", `${user.username} has left the chat! 😢`)
       );
 
       io.to(user.room).emit("roomData", {
